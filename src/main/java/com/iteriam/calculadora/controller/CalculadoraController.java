@@ -2,6 +2,7 @@ package com.iteriam.calculadora.controller;
 
 import java.math.BigDecimal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.iteriam.calculadora.service.IServiceCalculadora;
 
 import io.corp.calculator.TracerImpl;
 import io.swagger.annotations.ApiParam;
@@ -20,12 +23,16 @@ import io.swagger.annotations.ApiParam;
  *
  */
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/rest/calculadora")
 public class CalculadoraController {
 
 
     private TracerImpl tracer = new TracerImpl();
 
+    @Autowired
+    private IServiceCalculadora iServiceCalculadora;
+    
+    
 
 	
 	/**
@@ -40,25 +47,35 @@ public class CalculadoraController {
     }
 	
 	/**
-	 * Endpoint /calcular método GET.
-	 * @param  operandoUno Operando numero uno.
-	 * @param  operandoDos Operando numero dos.
-	 * @param  operador Operador suma, resta. Los posibles valores son add, sub, +, -.
+	 * Endpoint /suma método GET.
+	 * @param  numeroUno.
+	 * @param  numeroDos.
 	 * @return ResponseEntity<Double> resultado de la operación.
 	 */
-	@GetMapping(value = "/calcular")
-    public ResponseEntity<Double> calcula(@RequestParam(value = "operandoUno", required = true) @ApiParam (  value = "Primer operando", required = true) BigDecimal operandoUno,
-                                            @RequestParam(value = "operandoDos", required = true) @ApiParam (value = "Segundo operando", required = true) BigDecimal operandoDos,
-                                            @RequestParam(value = "operador" , required = true) @ApiParam (value = "Operador", required = true) String operador) {
+	@GetMapping(value = "/suma")
+    public ResponseEntity<Double> suma(@RequestParam(value = "numeroUno", required = true) @ApiParam (  value = "Primer número", required = true) BigDecimal numeroUno,
+                                            @RequestParam(value = "numeroDos", required = true) @ApiParam (value = "Segundo número", required = true) BigDecimal numeroDos){
 		
-		tracer.trace(String.format("INI GET >>> /calcular | RequestParam operandoUno %s, operandoDos %s, operador %s", operandoUno, operandoDos, operador));
-		
-	
-		double resultado = 4.4;
-     
-		
-		tracer.trace(String.format("FIN GET >>> /calcular |  resultado %1$,.2f", resultado));
+		tracer.trace(String.format("INI GET >>> /suma | RequestParam numeroUno %s, numeroDos %s", numeroUno, numeroDos));
+		double resultado = iServiceCalculadora.sumar(numeroUno, numeroDos);
+		tracer.trace(String.format("FIN GET >>> /suma |  resultado %1$,.2f", resultado));
 
+        return new ResponseEntity<>(resultado, HttpStatus.OK);
+    }
+	
+	/**
+	 * Endpoint /resta método GET.
+	 * @param  numeroUno.
+	 * @param  numeroDos.
+	 * @return ResponseEntity<Double> resultado de la operación.
+	 */
+	@GetMapping(value = "/resta")
+    public ResponseEntity<Double> resta(@RequestParam(value = "numeroUno", required = true) @ApiParam (  value = "Primer número", required = true) BigDecimal numeroUno,
+                                            @RequestParam(value = "numeroDos", required = true) @ApiParam (value = "Segundo número", required = true) BigDecimal numeroDos){
+		
+		tracer.trace(String.format("INI GET >>> /resta | RequestParam numeroUno %s, numeroDos %s", numeroUno, numeroDos));
+		double resultado = iServiceCalculadora.restar(numeroUno, numeroDos);
+		tracer.trace(String.format("FIN GET >>> /resta |  resultado %1$,.2f", resultado));
         return new ResponseEntity<>(resultado, HttpStatus.OK);
     }
 	

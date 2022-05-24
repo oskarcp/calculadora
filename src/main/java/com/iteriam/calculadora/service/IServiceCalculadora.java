@@ -10,13 +10,19 @@ import java.math.BigDecimal;
 public interface IServiceCalculadora {
 	
 	/**
-	 * Realiza una operación con dos operandos y un operador.
-	 * @param  operandoUno Operando numero uno.
-	 * @param  operandoDos Operando numero dos.
-	 * @param  operador Operador suma, resta. Los posibles valores son add, sub, +, -.
+	 * Realiza la suma entre dos operandos.
+	 * @param numeroUno.
+	 * @param numeroDos.
 	 * @return resultado de la operación.
-	
 	 */
-	double calcula(BigDecimal operadorUno, BigDecimal operadorDos, String operando);
+	double sumar(BigDecimal numeroUno, BigDecimal numeroDos);
+	
+	/**
+	 * Realiza la resta entre dos operandos.
+	 * @param numeroUno.
+	 * @param numeroDos.
+	 * @return resultado de la operación.
+	 */
+	double restar(BigDecimal numeroUno, BigDecimal numeroDos);
 
 }
