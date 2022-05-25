@@ -30,7 +30,12 @@ public class CalculadoraController {
     private TracerImpl tracer = new TracerImpl();
 
     @Autowired
-    private IServiceCalculadora iServiceCalculadora;
+    private final IServiceCalculadora iServiceCalculadora;
+  
+
+    public CalculadoraController(IServiceCalculadora iServiceCalculadora) {
+        this.iServiceCalculadora = iServiceCalculadora;
+    }
     
     
 
@@ -78,6 +83,8 @@ public class CalculadoraController {
 		tracer.trace(String.format("FIN GET >>> /resta |  resultado %1$,.2f", resultado));
         return new ResponseEntity<>(resultado, HttpStatus.OK);
     }
+	
+	
 	
 	
 }
