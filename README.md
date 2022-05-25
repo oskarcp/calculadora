@@ -29,9 +29,9 @@ Peticiones GET en el puerto 8080.
 Por cada operación a realizar de la calculadora, existen distintos endpoint (en este caso suma y resta). Los parámetros son los dos números de la operación, numeroUno y numeroDos.
 
 Para realizar una prueba: 
-Swagger: http://localhost:8080/swagger-ui.html#/calculadora-controller.
-Request URL: http://localhost:8080/rest/calculadora/resta?numeroDos=1&numeroUno=1
-Curl: curl -X GET "http://localhost:8080/rest/calculadora/resta?numeroDos=1&numeroUno=1" -H "accept: */*"
+1. Swagger: http://localhost:8080/swagger-ui.html#/calculadora-controller.
+2. Request URL: http://localhost:8080/rest/calculadora/resta?numeroDos=1&numeroUno=1.
+3. Curl: curl -X GET "http://localhost:8080/rest/calculadora/resta?numeroDos=1&numeroUno=1" -H "accept: */*".
 
 
 ### TEST
