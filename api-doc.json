@@ -1,0 +1,145 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Interfaz Servicio CalculadoraRest: realizar las operaciones de suma y resta",
+		"title": "Documentación Swagger Calculadora Rest "
+	},
+	"host": "localhost:8080",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "calculadora-controller",
+			"description": "Calculadora Controller"
+		}
+	],
+	"paths": {
+		"/rest/calculadora/resta": {
+			"get": {
+				"tags": [
+					"calculadora-controller"
+				],
+				"summary": "resta",
+				"operationId": "restaUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "numeroDos",
+						"in": "query",
+						"description": "Segundo número",
+						"required": true,
+						"type": "number",
+						"allowEmptyValue": false
+					},
+					{
+						"name": "numeroUno",
+						"in": "query",
+						"description": "Primer número",
+						"required": true,
+						"type": "number",
+						"allowEmptyValue": false
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "number",
+							"format": "double"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/rest/calculadora/start": {
+			"get": {
+				"tags": [
+					"calculadora-controller"
+				],
+				"summary": "start",
+				"operationId": "startUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/rest/calculadora/suma": {
+			"get": {
+				"tags": [
+					"calculadora-controller"
+				],
+				"summary": "suma",
+				"operationId": "sumaUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "numeroDos",
+						"in": "query",
+						"description": "Segundo número",
+						"required": true,
+						"type": "number",
+						"allowEmptyValue": false
+					},
+					{
+						"name": "numeroUno",
+						"in": "query",
+						"description": "Primer número",
+						"required": true,
+						"type": "number",
+						"allowEmptyValue": false
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "number",
+							"format": "double"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		}
+	}
+}
