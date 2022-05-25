@@ -3,7 +3,7 @@ Microservicio "calculadora", usando maven + spring-boot, con funcionalidades bas
 
 
 ## Requisitos previos
-1. Maven XX
+1. Maven 3.3.9
 2. Java 1.8
 
 ## Instalación
@@ -27,7 +27,7 @@ java -jar target/calculadora-spring-boot.jar
 Puerto 8080 escuchando peticiones REST GET
 Por cada operacion a realizar de la calculadora existen distintos endpoint. Los parametros son los dos numeros de la operacion, numeroUno y numeroDos
 
-Incluir swagger
+http://localhost:8080/swagger-ui.html#/calculadora-controller
 Incluir ejemplo
 
 ### TEST
