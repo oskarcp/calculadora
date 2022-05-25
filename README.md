@@ -20,7 +20,7 @@ Al finaliza, tendremos el JAR calculadora-fat.jar  en /target.
 
 ## Ejecución
 
-java -jar target/calculadora-spring-boot.jar
+java -jar target/calculadora-fat.jar
 
 ## Pruebas
 
