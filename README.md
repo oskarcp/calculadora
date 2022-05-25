@@ -7,6 +7,8 @@ Microservicio "calculadora", usando maven + spring-boot, con funcionalidades bá
 2. Java 1.8
 
 ## Instalación
+
+Genear el JAR a ejecutar, con las instrucciones: 
 ```
 git clone https://github.com/oskarcp/calculadora.git
 cd calculadora
@@ -14,8 +16,7 @@ mvn validate
 mvn verify
 mvn clean install
 ```
-
-Se habra generado un el JAR calculadora-fat.jar  en /target  
+Al finaliza, tendremos el JAR calculadora-fat.jar  en /target.
 
 ## Ejecución
 
@@ -24,12 +25,21 @@ java -jar target/calculadora-spring-boot.jar
 ## Pruebas
 
 ### API REST
-Puerto 8080 escuchando peticiones REST GET.
-Por cada operación a realizar de la calculadora, existen distintos endpoint. Los parámetros son los dos números de la operación, numeroUno y numeroDos
+Peticiones GET en el puerto 8080.
+Por cada operación a realizar de la calculadora, existen distintos endpoint (en este caso suma y resta). Los parámetros son los dos números de la operación, numeroUno y numeroDos.
 
-http://localhost:8080/swagger-ui.html#/calculadora-controller
-Incluir ejemplo
+Para realizar una prueba: 
+Swagger: http://localhost:8080/swagger-ui.html#/calculadora-controller.
+Request URL: http://localhost:8080/rest/calculadora/resta?numeroDos=1&numeroUno=1
+Curl: curl -X GET "http://localhost:8080/rest/calculadora/resta?numeroDos=1&numeroUno=1" -H "accept: */*"
+
 
 ### TEST
 
 mvn clean test
+
+
+
+
+
+
