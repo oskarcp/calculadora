@@ -1,5 +1,5 @@
 # Calculadora
-Microservicio "calculadora", usando maven + spring-boot, con funcionalidades basicas de sumar y restar.
+Microservicio "calculadora", usando maven + spring-boot, con funcionalidades básicas de sumar y restar.
 
 
 ## Requisitos previos
@@ -24,8 +24,8 @@ java -jar target/calculadora-spring-boot.jar
 ## Pruebas
 
 ### API REST
-Puerto 8080 escuchando peticiones REST GET
-Por cada operacion a realizar de la calculadora existen distintos endpoint. Los parametros son los dos numeros de la operacion, numeroUno y numeroDos
+Puerto 8080 escuchando peticiones REST GET.
+Por cada operación a realizar de la calculadora, existen distintos endpoint. Los parámetros son los dos números de la operación, numeroUno y numeroDos
 
 http://localhost:8080/swagger-ui.html#/calculadora-controller
 Incluir ejemplo
@@ -33,9 +33,3 @@ Incluir ejemplo
 ### TEST
 
 mvn clean test
-
-
-
-
-
-
