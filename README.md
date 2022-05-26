@@ -8,7 +8,7 @@ Microservicio "calculadora", usando maven + spring-boot, con funcionalidades bá
 
 ## Instalación
 
-Genear el JAR a ejecutar, con las instrucciones: 
+Generar el JAR a ejecutar, con las instrucciones: 
 ```
 git clone https://github.com/oskarcp/calculadora.git
 cd calculadora
@@ -16,7 +16,7 @@ mvn validate
 mvn verify
 mvn clean install
 ```
-Al finaliza, tendremos el JAR calculadora-fat.jar  en /target.
+Al finalizar, tendremos el JAR calculadora-fat.jar  en /target.
 
 ## Ejecución
 
@@ -25,18 +25,22 @@ java -jar target/calculadora-fat.jar
 ## Pruebas
 
 ### API REST
-Peticiones GET en el puerto 8080.
-Por cada operación a realizar de la calculadora, existen distintos endpoint (en este caso suma y resta). Los parámetros son los dos números de la operación, numeroUno y numeroDos.
+Petición GET /rest/calculadora/operacion en el puerto 8080.
 
-Para realizar una prueba: 
+Se pasarán tres parámetros: numeroUno (BigDecimal), numeroDos(BigDecimal) y operación (String).
+Si la operación no existe devuelve un error controlado indicando que la operación no está soportada.
+
+
+Distintas maneras de realizar una prueba: 
 1. Swagger: http://localhost:8080/swagger-ui.html#/calculadora-controller.
-2. Request URL: http://localhost:8080/rest/calculadora/resta?numeroDos=1&numeroUno=1.
-3. Curl: curl -X GET "http://localhost:8080/rest/calculadora/resta?numeroDos=1&numeroUno=1" -H "accept: */*".
+2. Request URL: http://localhost:8080/rest/calculadora/operacion?numeroDos=100&numeroUno=100&operacion=%2B.
+3. Curl: curl -X GET "http://localhost:8080/rest/calculadora/operacion?numeroDos=100&numeroUno=100&operacion=%2B" -H "accept: */*".
 
 
 ### TEST
 
 mvn clean test
+
 
 
 

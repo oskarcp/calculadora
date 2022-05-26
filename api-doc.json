@@ -1,8 +1,8 @@
 {
 	"swagger": "2.0",
 	"info": {
-		"description": "Interfaz Servicio CalculadoraRest: realizar las operaciones de suma y resta",
-		"title": "DocumentaciÃ³n Swagger Calculadora Rest "
+		"description": "Interfaz Servicio CalculadoraRest: realizar operaciones de una calculadora",
+		"title": "Documentación Swagger Calculadora Rest "
 	},
 	"host": "localhost:8080",
 	"basePath": "/",
@@ -13,13 +13,13 @@
 		}
 	],
 	"paths": {
-		"/rest/calculadora/resta": {
+		"/rest/calculadora/operacion": {
 			"get": {
 				"tags": [
 					"calculadora-controller"
 				],
-				"summary": "resta",
-				"operationId": "restaUsingGET",
+				"summary": "operacion",
+				"operationId": "operacionUsingGET",
 				"produces": [
 					"*/*"
 				],
@@ -27,96 +27,27 @@
 					{
 						"name": "numeroDos",
 						"in": "query",
-						"description": "Segundo nÃºmero",
+						"description": "Segundo número",
 						"required": true,
 						"type": "number",
-						"allowEmptyValue": false
+						"allowEmptyValue": false,
+						"x-example": 100.0
 					},
 					{
 						"name": "numeroUno",
 						"in": "query",
-						"description": "Primer nÃºmero",
+						"description": "Primer número",
 						"required": true,
 						"type": "number",
-						"allowEmptyValue": false
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"type": "number",
-							"format": "double"
-						}
-					},
-					"401": {
-						"description": "Unauthorized"
-					},
-					"403": {
-						"description": "Forbidden"
-					},
-					"404": {
-						"description": "Not Found"
-					}
-				},
-				"deprecated": false
-			}
-		},
-		"/rest/calculadora/start": {
-			"get": {
-				"tags": [
-					"calculadora-controller"
-				],
-				"summary": "start",
-				"operationId": "startUsingGET",
-				"produces": [
-					"*/*"
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"type": "string"
-						}
-					},
-					"401": {
-						"description": "Unauthorized"
-					},
-					"403": {
-						"description": "Forbidden"
-					},
-					"404": {
-						"description": "Not Found"
-					}
-				},
-				"deprecated": false
-			}
-		},
-		"/rest/calculadora/suma": {
-			"get": {
-				"tags": [
-					"calculadora-controller"
-				],
-				"summary": "suma",
-				"operationId": "sumaUsingGET",
-				"produces": [
-					"*/*"
-				],
-				"parameters": [
-					{
-						"name": "numeroDos",
-						"in": "query",
-						"description": "Segundo nÃºmero",
-						"required": true,
-						"type": "number",
-						"allowEmptyValue": false
+						"allowEmptyValue": false,
+						"x-example": 100.0
 					},
 					{
-						"name": "numeroUno",
+						"name": "operacion",
 						"in": "query",
-						"description": "Primer nÃºmero",
+						"description": "Operacion",
 						"required": true,
-						"type": "number",
+						"type": "string",
 						"allowEmptyValue": false
 					}
 				],
@@ -124,8 +55,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"type": "number",
-							"format": "double"
+							"type": "number"
 						}
 					},
 					"401": {
