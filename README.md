@@ -20,7 +20,7 @@ Al finalizar, tendremos el JAR calculadora-fat.jar  en /target.
 
 ## Ejecución
 
-java -jar target/calculadora-fat.jar
+java -jar target/calculadora.jar
 
 ## Pruebas
 
