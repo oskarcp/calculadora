@@ -16,7 +16,7 @@ mvn validate
 mvn verify
 mvn clean install
 ```
-Al finalizar, tendremos el JAR calculadora-fat.jar  en /target.
+Al finalizar, tendremos el JAR calculadora.jar  en /target.
 
 ## Ejecución
 
