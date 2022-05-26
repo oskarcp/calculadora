@@ -8,16 +8,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iteriam.calculadora.service.IServiceCalculadora;
+import com.iteriam.calculadora.exception.ExceptionCalculadora;
+import com.iteriam.calculadora.service.ServiceCalculadora;
 
 import io.corp.calculator.TracerImpl;
 import io.swagger.annotations.ApiParam;
 
 /**
  * Controlador que expone los distintos endpoint.
+ * 
  * @author Óscar Cambero
  * 
  *
@@ -26,66 +27,36 @@ import io.swagger.annotations.ApiParam;
 @RequestMapping("/rest/calculadora")
 public class CalculadoraController {
 
+	private TracerImpl tracer = new TracerImpl();
 
-    private TracerImpl tracer = new TracerImpl();
+	@Autowired
+	private final ServiceCalculadora serviceCalculadora;
 
-    @Autowired
-    private final IServiceCalculadora iServiceCalculadora;
-  
+	public CalculadoraController(ServiceCalculadora serviceCalculadora) {
+		this.serviceCalculadora = serviceCalculadora;
+	}
 
-    public CalculadoraController(IServiceCalculadora iServiceCalculadora) {
-        this.iServiceCalculadora = iServiceCalculadora;
-    }
-    
-    
-
-	
 	/**
-	 * Endpint que indica si el servicio esta operativo.
-	 * @return mensaje indicando el estado del servicio.
-	 */
-	@ResponseBody
-    @GetMapping("/start")
-    public String start() {
-		tracer.trace(String.format("INI GET >>> /start") );
-        return "Servicio operativo";
-    }
-	
-	/**
-	 * Endpoint /suma método GET.
-	 * @param  numeroUno.
-	 * @param  numeroDos.
+	 * Endpoint /operacion método GET.
+	 * 
+	 * @param numeroUno.
+	 * @param numeroDos.
+	 * @param operacion.
 	 * @return ResponseEntity<Double> resultado de la operación.
+	 * @throws ExceptionCalculadora 
 	 */
-	@GetMapping(value = "/suma")
-    public ResponseEntity<Double> suma(@RequestParam(value = "numeroUno", required = true) @ApiParam (  value = "Primer número", required = true) BigDecimal numeroUno,
-                                            @RequestParam(value = "numeroDos", required = true) @ApiParam (value = "Segundo número", required = true) BigDecimal numeroDos){
-		
-		tracer.trace(String.format("INI GET >>> /suma | RequestParam numeroUno %s, numeroDos %s", numeroUno, numeroDos));
-		double resultado = iServiceCalculadora.sumar(numeroUno, numeroDos);
-		tracer.trace(String.format("FIN GET >>> /suma |  resultado %1$,.2f", resultado));
+	@GetMapping(value = "/operacion")
+	public ResponseEntity<BigDecimal> operacion(
+			@RequestParam(value = "numeroUno", required = true) @ApiParam(value = "Primer número", required = true, example = "100") BigDecimal numeroUno,
+			@RequestParam(value = "numeroDos", required = true) @ApiParam(value = "Segundo número", required = true, example = "100") BigDecimal numeroDos,
+			@RequestParam(value = "operacion", required = true) @ApiParam(value = "Operacion", required = true) String operacion) throws ExceptionCalculadora {
 
-        return new ResponseEntity<>(resultado, HttpStatus.OK);
-    }
-	
-	/**
-	 * Endpoint /resta método GET.
-	 * @param  numeroUno.
-	 * @param  numeroDos.
-	 * @return ResponseEntity<Double> resultado de la operación.
-	 */
-	@GetMapping(value = "/resta")
-    public ResponseEntity<Double> resta(@RequestParam(value = "numeroUno", required = true) @ApiParam (  value = "Primer número", required = true) BigDecimal numeroUno,
-                                            @RequestParam(value = "numeroDos", required = true) @ApiParam (value = "Segundo número", required = true) BigDecimal numeroDos){
-		
-		tracer.trace(String.format("INI GET >>> /resta | RequestParam numeroUno %s, numeroDos %s", numeroUno, numeroDos));
-		double resultado = iServiceCalculadora.restar(numeroUno, numeroDos);
-		tracer.trace(String.format("FIN GET >>> /resta |  resultado %1$,.2f", resultado));
-        return new ResponseEntity<>(resultado, HttpStatus.OK);
-    }
-	
-	
-	
-	
+		tracer.trace(String.format("INI GET >>> /operacion | RequestParam numeroUno %s, numeroDos %s, operacion %s",
+				numeroUno, numeroDos, operacion));
+		BigDecimal resultado = serviceCalculadora.operar(numeroUno, numeroDos, operacion);
+		tracer.trace(String.format("FIN GET >>> /operacion |  resultado %1$,.2f", resultado));
+
+		return new ResponseEntity<>(resultado, HttpStatus.OK);
+	}
+
 }
-	

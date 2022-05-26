@@ -1,10 +1,10 @@
 package com.iteriam.calculadora.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,44 +13,82 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.iteriam.calculadora.CalculadoraApplication;
-
+import com.iteriam.calculadora.exception.ExceptionCalculadora;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = CalculadoraApplication.class)
 
 public class ServiceTest {
 
-    @Autowired
-    IServiceCalculadora iServiceCalculadora;
+	@Autowired
+	ServiceCalculadora serviceCalculadora;
 
-    
-    @DisplayName("Prueba suma ok")
-    @Test
-    void suma1() {
-    	BigDecimal bd1 = new BigDecimal (1);
-    	BigDecimal bd2 = new BigDecimal (1);
-    	assertEquals(2.0, iServiceCalculadora.sumar(bd1, bd2));
-    }
-    @DisplayName("Prueba suma ko")
-    @Test
-    void suma2() {
-    	BigDecimal bd1 = new BigDecimal (1);
-    	BigDecimal bd2 = new BigDecimal (1);
-    	assertNotEquals(3.0, iServiceCalculadora.sumar(bd1, bd2));
-    }
-    @DisplayName("Prueba resta ok")
-    @Test
-    void resta1() {
-    	BigDecimal bd1 = new BigDecimal (1);
-    	BigDecimal bd2 = new BigDecimal (1);
-    	assertEquals(0.0, iServiceCalculadora.restar(bd1, bd2));
-    }
-    @DisplayName("Prueba resta ko")
-    @Test
-    void resta2() {
-    	BigDecimal bd1 = new BigDecimal (-1);
-    	BigDecimal bd2 = new BigDecimal (-1);
-    	assertEquals(0.0, iServiceCalculadora.restar(bd1, bd2));
-    }
-	
+	@DisplayName("Prueba suma ok con operacion = +")
+	@Test
+	void suma1() throws ExceptionCalculadora {
+		BigDecimal bd1 = new BigDecimal(1);
+		BigDecimal bd2 = new BigDecimal(1);
+		assertEquals(new BigDecimal(2), serviceCalculadora.operar(bd1, bd2, "+"));
+	}
+
+	@DisplayName("Prueba suma ok con operacion = suma")
+	@Test
+	void suma2() throws ExceptionCalculadora {
+		BigDecimal bd1 = new BigDecimal(1);
+		BigDecimal bd2 = new BigDecimal(1);
+		assertEquals(new BigDecimal(2), serviceCalculadora.operar(bd1, bd2, "suma"));
+	}
+
+	@DisplayName("Prueba suma ok con operacion = SUMA")
+	@Test
+	void suma3() throws ExceptionCalculadora {
+		BigDecimal bd1 = new BigDecimal(1);
+		BigDecimal bd2 = new BigDecimal(1);
+		assertEquals(new BigDecimal(2), serviceCalculadora.operar(bd1, bd2, "SUMA"));
+	}
+
+	@DisplayName("Prueba resta ok con operacion = -")
+	@Test
+	void resta1() throws ExceptionCalculadora {
+		BigDecimal bd1 = new BigDecimal(1);
+		BigDecimal bd2 = new BigDecimal(1);
+		assertEquals(new BigDecimal(0), serviceCalculadora.operar(bd1, bd2, "-"));
+	}
+
+	@DisplayName("Prueba resta ok con operacion = resta")
+	@Test
+	void reata2() throws ExceptionCalculadora {
+		BigDecimal bd1 = new BigDecimal(1);
+		BigDecimal bd2 = new BigDecimal(1);
+		assertEquals(new BigDecimal(0), serviceCalculadora.operar(bd1, bd2, "resta"));
+	}
+
+	@DisplayName("Prueba resta ok con operacion = RESTA")
+	@Test
+	void reata3() throws ExceptionCalculadora {
+		BigDecimal bd1 = new BigDecimal(1);
+		BigDecimal bd2 = new BigDecimal(1);
+		assertEquals(new BigDecimal(0), serviceCalculadora.operar(bd1, bd2, "RESTA"));
+	}
+
+	@Test
+	void testExceptionCalculadora1() {
+
+		Assertions.assertThrows(ExceptionCalculadora.class, () -> {
+			BigDecimal bd1 = new BigDecimal(1);
+			BigDecimal bd2 = new BigDecimal(1);
+			serviceCalculadora.operar(bd1, bd2, "SUM");
+		});
+	}
+
+	@Test
+	void testExceptionCalculadora2() throws ExceptionCalculadora {
+
+		Assertions.assertThrows(ExceptionCalculadora.class, () -> {
+			BigDecimal bd1 = new BigDecimal(1);
+			BigDecimal bd2 = new BigDecimal(1);
+			serviceCalculadora.operar(bd1, bd2, "/");
+		});
+	}
+
 }
