@@ -56,7 +56,7 @@ public class ServiceTest {
 
 	@DisplayName("Prueba resta ok con operacion = resta")
 	@Test
-	void reata2() throws ExceptionCalculadora {
+	void resta2() throws ExceptionCalculadora {
 		BigDecimal bd1 = new BigDecimal(1);
 		BigDecimal bd2 = new BigDecimal(1);
 		assertEquals(new BigDecimal(0), serviceCalculadora.operar(bd1, bd2, "resta"));
@@ -64,7 +64,7 @@ public class ServiceTest {
 
 	@DisplayName("Prueba resta ok con operacion = RESTA")
 	@Test
-	void reata3() throws ExceptionCalculadora {
+	void resta3() throws ExceptionCalculadora {
 		BigDecimal bd1 = new BigDecimal(1);
 		BigDecimal bd2 = new BigDecimal(1);
 		assertEquals(new BigDecimal(0), serviceCalculadora.operar(bd1, bd2, "RESTA"));

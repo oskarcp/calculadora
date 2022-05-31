@@ -45,7 +45,7 @@ public class ControllerTest {
 
 		String decimal = result.getResponse().getContentAsString();
 		assertNotNull(decimal);
-		assertEquals(decimal, new BigDecimal(4).toString());
+		assertEquals("4", decimal);
 
 	}
 }
