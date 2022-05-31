@@ -2,8 +2,7 @@ package com.iteriam.calculadora.exception;
 
 /**
  * Excepcion de aplicación.
- * @author Óscar Cambero
- *
+ * 
  */
 
 public class ExceptionCalculadora extends Exception{

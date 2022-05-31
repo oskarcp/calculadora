@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 /**
  * Clase resta.
- * @author Óscar Cambero
  *
  */
 public class Resta implements MathOperation {

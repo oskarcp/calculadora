@@ -2,6 +2,7 @@ package com.iteriam.calculadora.service;
 
 import java.math.BigDecimal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iteriam.calculadora.exception.ExceptionCalculadora;
@@ -12,7 +13,12 @@ import io.corp.calculator.TracerImpl;
 @Service
 public class ImplServiceCalculadora implements ServiceCalculadora {
 
-	private TracerImpl tracer = new TracerImpl();
+	private TracerImpl tracer;
+	
+	@Autowired
+	public void setTracer(TracerImpl tracer) {
+		this.tracer = tracer;
+	}
 
 	@Override
 	public BigDecimal operar(BigDecimal numeroUno, BigDecimal numeroDos, String strOperacion) throws ExceptionCalculadora {
@@ -33,7 +39,8 @@ public class ImplServiceCalculadora implements ServiceCalculadora {
 			break;
 		default:
 			tracer.trace(String.format("Operación no soportada para ser calculada %s", strOperacion));
-			break;
+			throw new ExceptionCalculadora	("Operación no soportada para el valor: " + strOperacion);
+			
 
 		}
 

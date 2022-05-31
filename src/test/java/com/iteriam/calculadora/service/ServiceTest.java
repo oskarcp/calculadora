@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -71,24 +70,6 @@ public class ServiceTest {
 		assertEquals(new BigDecimal(0), serviceCalculadora.operar(bd1, bd2, "RESTA"));
 	}
 
-	@Test
-	void testExceptionCalculadora1() {
 
-		Assertions.assertThrows(ExceptionCalculadora.class, () -> {
-			BigDecimal bd1 = new BigDecimal(1);
-			BigDecimal bd2 = new BigDecimal(1);
-			serviceCalculadora.operar(bd1, bd2, "SUM");
-		});
-	}
-
-	@Test
-	void testExceptionCalculadora2() throws ExceptionCalculadora {
-
-		Assertions.assertThrows(ExceptionCalculadora.class, () -> {
-			BigDecimal bd1 = new BigDecimal(1);
-			BigDecimal bd2 = new BigDecimal(1);
-			serviceCalculadora.operar(bd1, bd2, "/");
-		});
-	}
 
 }

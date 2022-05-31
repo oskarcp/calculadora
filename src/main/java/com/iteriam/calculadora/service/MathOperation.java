@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @author Óscar Cambero
+ *Clase que realiza una operación.
  *
  */
 public interface MathOperation {

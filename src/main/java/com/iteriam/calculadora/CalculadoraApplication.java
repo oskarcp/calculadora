@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Clase principal.
- * @author Óscar Cambero Pastor
  *
  */
 

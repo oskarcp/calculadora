@@ -18,22 +18,24 @@ import io.swagger.annotations.ApiParam;
 
 /**
  * Controlador que expone los distintos endpoint.
- * 
- * @author Óscar Cambero
- * 
- *
  */
 @RestController
 @RequestMapping("/rest/calculadora")
 public class CalculadoraController {
 
-	private TracerImpl tracer = new TracerImpl();
+
+	private TracerImpl tracer;
 
 	@Autowired
 	private final ServiceCalculadora serviceCalculadora;
 
 	public CalculadoraController(ServiceCalculadora serviceCalculadora) {
 		this.serviceCalculadora = serviceCalculadora;
+	}
+
+	@Autowired
+	public void setTracer(TracerImpl tracer) {
+		this.tracer = tracer;
 	}
 
 	/**
@@ -43,13 +45,14 @@ public class CalculadoraController {
 	 * @param numeroDos.
 	 * @param operacion.
 	 * @return ResponseEntity<Double> resultado de la operación.
-	 * @throws ExceptionCalculadora 
+	 * @throws ExceptionCalculadora
 	 */
 	@GetMapping(value = "/operacion")
 	public ResponseEntity<BigDecimal> operacion(
 			@RequestParam(value = "numeroUno", required = true) @ApiParam(value = "Primer número", required = true, example = "100") BigDecimal numeroUno,
 			@RequestParam(value = "numeroDos", required = true) @ApiParam(value = "Segundo número", required = true, example = "100") BigDecimal numeroDos,
-			@RequestParam(value = "operacion", required = true) @ApiParam(value = "Operacion", required = true) String operacion) throws ExceptionCalculadora {
+			@RequestParam(value = "operacion", required = true) @ApiParam(value = "Operacion", required = true) String operacion)
+			throws ExceptionCalculadora {
 
 		tracer.trace(String.format("INI GET >>> /operacion | RequestParam numeroUno %s, numeroDos %s, operacion %s",
 				numeroUno, numeroDos, operacion));

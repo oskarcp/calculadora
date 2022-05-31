@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 /**
  * Manejador de excepciones.
  * 
- * @author Óscar Cambero
  *
  */
 @RestControllerAdvice(basePackages = { "com.iteriam.calculadora.controller" })

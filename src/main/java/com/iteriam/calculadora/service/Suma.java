@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 /**
  * Clase suma.
- * @author Óscar Cambero
  *
  */
 public class Suma implements MathOperation {

@@ -26,7 +26,7 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>com.iteriam</groupId>
+			<groupId>io.corp.calculator</groupId>
 			<artifactId>tracer</artifactId>
 			<version>1.0.0</version>
 		</dependency>
@@ -61,7 +61,6 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -141,7 +140,7 @@
 				<artifactId>maven-install-plugin</artifactId>
 
 				<configuration>
-					<groupId>com.iteriam</groupId>
+					<groupId>io.corp.calculator</groupId>
 					<artifactId>tracer</artifactId>
 					<version>1.0.0</version>
 					<packaging>jar</packaging>

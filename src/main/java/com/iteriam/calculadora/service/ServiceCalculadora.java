@@ -6,7 +6,6 @@ import com.iteriam.calculadora.exception.ExceptionCalculadora;
 
 /**
  * Clase que contiene las distntas funcionalidades de una calculadora.
- * @author Óscar Cambero
  *
  */
 public interface ServiceCalculadora  {
